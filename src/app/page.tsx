@@ -90,7 +90,7 @@ export default async function Home() {
             <h2 id="upcoming-heading" className="text-2xl font-semibold">Open &amp; upcoming IPOs</h2>
             <p className="mt-1 text-sm text-ink-2">Issues open now or opening soon.</p>
           </div>
-          <Link href="/ipos?status=upcoming" className="shrink-0 text-sm font-medium text-series">View all</Link>
+          <Link href="/ipos?status=upcoming" className="-my-2 shrink-0 py-2 text-sm font-medium text-series">View all</Link>
         </div>
         <div className="mt-5">
           {live.length ? (
@@ -112,7 +112,7 @@ export default async function Home() {
             <h2 id="listed-heading" className="text-2xl font-semibold">Recently listed</h2>
             <p className="mt-1 text-sm text-ink-2">How recent IPOs have traded since listing. Past performance does not predict future returns.</p>
           </div>
-          <Link href="/ipos?status=listed" className="shrink-0 text-sm font-medium text-series">View all</Link>
+          <Link href="/ipos?status=listed" className="-my-2 shrink-0 py-2 text-sm font-medium text-series">View all</Link>
         </div>
         <div className="mt-5">
           {listed.length ? (
@@ -155,7 +155,7 @@ export default async function Home() {
             <h2 id="learn-heading" className="text-2xl font-semibold">New to IPOs? Start here</h2>
             <p className="mt-1 text-sm text-ink-2">Short lessons, each under ten minutes.</p>
           </div>
-          <Link href="/learn" className="shrink-0 text-sm font-medium text-series">All lessons</Link>
+          <Link href="/learn" className="-my-2 shrink-0 py-2 text-sm font-medium text-series">All lessons</Link>
         </div>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {LESSONS.slice(0, 6).map((l) => (

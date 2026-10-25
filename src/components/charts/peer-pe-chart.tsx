@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useChartColors } from "@/lib/theme";
 import { Bar, BarChart, Cell, LabelList, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
@@ -13,6 +14,18 @@ export interface PeerDatum {
 /** Horizontal bars: the IPO in the series colour, peers as grey context, direct value labels. */
 export function PeerPeChart({ data, median }: { data: PeerDatum[]; median: number | null }) {
   const c = useChartColors();
+  // Label column adapts to the chart's own width so bars stay readable on phones.
+  const box = useRef<HTMLDivElement>(null);
+  const [narrow, setNarrow] = useState(false);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setNarrow((e?.contentRect.width ?? 999) < 380));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const labelWidth = narrow ? 104 : 136;
+  const maxChars = narrow ? 11 : 18;
   const height = Math.max(160, data.length * 44 + 30);
   return (
     <figure>
@@ -20,14 +33,14 @@ export function PeerPeChart({ data, median }: { data: PeerDatum[]; median: numbe
         P/E comparison: {data.map((d) => `${d.name} ${d.pe.toFixed(1)}x`).join("; ")}
         {median != null ? `; peer median ${median.toFixed(1)}x` : ""}
       </figcaption>
-      <div style={{ height }} className="w-full" aria-hidden>
+      <div ref={box} style={{ height }} className="w-full" aria-hidden>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} layout="vertical" margin={{ top: 28, right: 52, bottom: 8, left: 4 }} barCategoryGap={10}>
+          <BarChart data={data} layout="vertical" margin={{ top: 28, right: narrow ? 44 : 52, bottom: 8, left: 0 }} barCategoryGap={10}>
             <XAxis type="number" hide domain={[0, "dataMax"]} />
             <YAxis
               type="category"
               dataKey="name"
-              width={136}
+              width={labelWidth}
               tickLine={false}
               axisLine={false}
               tick={({ x, y, payload }: { x?: number | string; y?: number | string; payload?: { value: string } }) => {
@@ -36,7 +49,7 @@ export function PeerPeChart({ data, median }: { data: PeerDatum[]; median: numbe
                 const isIpo = data.find((d) => d.name === label)?.isIpo;
                 return (
                   <text x={Number(x) - 6} y={Number(y)} dy={4} textAnchor="end" fontSize={12} fill={isIpo ? c.ink : c.axis} fontWeight={isIpo ? 600 : 400}>
-                    {short.length > 18 ? `${short.slice(0, 17)}…` : short}
+                    {short.length > maxChars ? `${short.slice(0, maxChars - 1)}…` : short}
                   </text>
                 );
               }}

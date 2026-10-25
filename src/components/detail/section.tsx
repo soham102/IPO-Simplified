@@ -13,9 +13,9 @@ export function Panel({ title, children, className, action }: { title?: React.Re
   return (
     <section className={cn("card p-5 sm:p-6", className)}>
       {(title || action) && (
-        <div className="mb-4 flex items-start justify-between gap-3">
+        <div className="mb-4 flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
           {title && <h3 className="font-sans text-base font-semibold">{title}</h3>}
-          {action}
+          {action && <div className="min-w-0 max-w-full">{action}</div>}
         </div>
       )}
       {children}

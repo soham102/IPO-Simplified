@@ -24,9 +24,15 @@ export function LiveBanner() {
       <p className="mx-auto flex max-w-6xl items-start gap-2 px-4 py-2 text-sm sm:items-center">
         <ShieldQuestion className="mt-0.5 size-4 shrink-0 text-warn sm:mt-0" aria-hidden />
         <span>
-          <strong className="font-semibold">Real IPOs, compiled 25 Oct 2026 from public sources.</strong> Figures are marked
-          unverified until checked against each offer document. Always confirm in the linked RHP.{" "}
-          <Link href="/disclosures#data-modes" className="underline">How we source data</Link>
+          <strong className="font-semibold">Real IPOs, compiled 25 Oct 2026 from public sources.</strong>{" "}
+          <span className="hidden sm:inline">
+            Figures are marked unverified until checked against each offer document. Always confirm in the linked RHP.{" "}
+          </span>
+          <span className="sm:hidden">Figures unverified. </span>
+          <Link href="/disclosures#data-modes" className="underline">
+            <span className="hidden sm:inline">How we source data</span>
+            <span className="sm:hidden">Details</span>
+          </Link>
         </span>
       </p>
     </div>

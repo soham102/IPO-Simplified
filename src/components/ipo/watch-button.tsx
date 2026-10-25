@@ -19,7 +19,7 @@ export function WatchButton({ slug, name, compact }: { slug: string; name: strin
       aria-label={on ? `Remove ${name} from watchlist` : `Add ${name} to watchlist`}
       className={cn(
         "relative z-10 inline-flex items-center gap-1.5 rounded-lg border text-sm font-medium transition-colors",
-        compact ? "p-1.5" : "px-3 py-2",
+        compact ? "p-1.5 pointer-coarse:p-2.5" : "px-3 py-2 pointer-coarse:py-2.5",
         on ? "border-brand/30 bg-brand-soft text-brand" : "border-line bg-surface text-ink-2 hover:text-ink",
       )}
     >

@@ -25,7 +25,7 @@ export function ThemeToggle({ showLabels = false }: { showLabels?: boolean }) {
           title={`${label} theme`}
           onClick={() => set(id)}
           className={cn(
-            "inline-flex items-center gap-1.5 rounded-full px-2 py-1.5 text-sm font-medium transition-colors",
+            "inline-flex items-center gap-1.5 rounded-full px-2 py-1.5 text-sm font-medium transition-colors pointer-coarse:px-3 pointer-coarse:py-2.5",
             choice === id ? "bg-brand text-on-brand" : "text-ink-3 hover:text-ink",
           )}
         >

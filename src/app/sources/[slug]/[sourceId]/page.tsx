@@ -48,7 +48,7 @@ export default async function SourcePage({ params, searchParams }: PageProps<"/s
 
   return (
     <div className="mx-auto max-w-3xl py-10">
-      <Link href={`/ipos/${ipo.slug}?tab=sources`} className="inline-flex items-center gap-1 text-sm text-ink-2 hover:text-ink">
+      <Link href={`/ipos/${ipo.slug}?tab=sources`} className="-my-2 inline-flex items-center gap-1 py-2 text-sm text-ink-2 hover:text-ink">
         <ChevronLeft className="size-4" aria-hidden /> {ipo.company.name}: sources
       </Link>
 

@@ -25,7 +25,7 @@ export default async function PerformancePage({ params }: PageProps<"/ipos/[slug
 
   return (
     <div className="py-8">
-      <Link href={`/ipos/${ipo.slug}`} className="inline-flex items-center gap-1 text-sm text-ink-2 hover:text-ink">
+      <Link href={`/ipos/${ipo.slug}`} className="-my-2 inline-flex items-center gap-1 py-2 text-sm text-ink-2 hover:text-ink">
         <ChevronLeft className="size-4" aria-hidden /> Back to {ipo.company.name} analysis
       </Link>
       <p className="eyebrow mt-6">Post-listing performance</p>

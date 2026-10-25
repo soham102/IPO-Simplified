@@ -35,7 +35,7 @@ export function SiteHeader() {
           </span>
           <span className="font-serif text-lg font-semibold tracking-tight">IPO Simplified</span>
         </Link>
-        <nav aria-label="Main" className="ml-auto hidden md:block">
+        <nav aria-label="Main" className="ml-auto hidden lg:block">
           <ul className="flex items-center gap-1">
             {NAV.map((n) => (
               <li key={n.href}>
@@ -53,12 +53,12 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <ThemeToggle />
         </div>
         <button
           type="button"
-          className="ml-auto rounded-md p-2 text-ink md:hidden"
+          className="ml-auto rounded-md p-2 text-ink lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -68,7 +68,7 @@ export function SiteHeader() {
         </button>
       </div>
       {open && (
-        <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-paper md:hidden">
+        <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-paper lg:hidden">
           <ul className="mx-auto max-w-6xl px-4 py-2">
             {NAV.map((n) => (
               <li key={n.href}>

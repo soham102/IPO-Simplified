@@ -115,6 +115,7 @@
     font-variant-numeric: tabular-nums;
   }
   .card {
+    min-width: 0;
     background: var(--color-surface);
     border: 1px solid var(--color-line);
     border-radius: 14px;

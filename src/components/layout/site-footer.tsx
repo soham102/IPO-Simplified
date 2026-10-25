@@ -24,20 +24,20 @@ export function SiteFooter({ dataMode }: { dataMode: "sample" | "live" }) {
         </div>
         <div>
           <p className="eyebrow">Product</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link className="text-ink-2 hover:text-ink" href="/ipos">Explore IPOs</Link></li>
-            <li><Link className="text-ink-2 hover:text-ink" href="/learn">Learning centre</Link></li>
-            <li><Link className="text-ink-2 hover:text-ink" href="/glossary">Glossary</Link></li>
-            <li><Link className="text-ink-2 hover:text-ink" href="/watchlist">Watchlist</Link></li>
+          <ul className="mt-2 space-y-1 text-sm">
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/ipos">Explore IPOs</Link></li>
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/learn">Learning centre</Link></li>
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/glossary">Glossary</Link></li>
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/watchlist">Watchlist</Link></li>
           </ul>
         </div>
         <div>
           <p className="eyebrow">Trust</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link className="text-ink-2 hover:text-ink" href="/methodology">Methodology</Link></li>
-            <li><Link className="text-ink-2 hover:text-ink" href="/disclosures">Disclosures &amp; data sources</Link></li>
+          <ul className="mt-2 space-y-1 text-sm">
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/methodology">Methodology</Link></li>
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/disclosures">Disclosures &amp; data sources</Link></li>
             <li><ReportErrorButton variant="link" /></li>
-            <li><Link className="text-ink-2 hover:text-ink" href="/contact">Contact</Link></li>
+            <li><Link className="inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2" href="/contact">Contact</Link></li>
           </ul>
         </div>
       </div>
@@ -46,7 +46,7 @@ export function SiteFooter({ dataMode }: { dataMode: "sample" | "live" }) {
           <p>
             Created by <span className="font-semibold text-white">{OWNER_NAME}</span>
           </p>
-          <a href={FEEDBACK_MAILTO} className="inline-flex items-center gap-2 hover:text-white">
+          <a href={FEEDBACK_MAILTO} className="-my-2 inline-flex items-center gap-2 py-2 hover:text-white">
             <Mail className="size-4" aria-hidden />
             {OWNER_EMAIL}
           </a>

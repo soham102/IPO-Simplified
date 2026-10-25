@@ -85,7 +85,7 @@ export default async function IpoPage({ params }: PageProps<"/ipos/[slug]">) {
 
   return (
     <div className="py-8">
-      <Link href="/ipos" className="inline-flex items-center gap-1 text-sm text-ink-2 hover:text-ink">
+      <Link href="/ipos" className="-my-2 inline-flex items-center gap-1 py-2 text-sm text-ink-2 hover:text-ink">
         <ChevronLeft className="size-4" aria-hidden /> All IPOs
       </Link>
 

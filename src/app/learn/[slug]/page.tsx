@@ -58,7 +58,7 @@ export default async function LessonPage({ params }: PageProps<"/learn/[slug]">)
 
   return (
     <article className="mx-auto max-w-2xl py-10">
-      <Link href="/learn" className="inline-flex items-center gap-1 text-sm text-ink-2 hover:text-ink">
+      <Link href="/learn" className="-my-2 inline-flex items-center gap-1 py-2 text-sm text-ink-2 hover:text-ink">
         <ArrowLeft className="size-4" aria-hidden /> Learning centre
       </Link>
       <p className="mt-6 text-sm text-ink-3 num">Lesson {idx + 1} of {LESSONS.length} · {lesson.minutes} min read</p>

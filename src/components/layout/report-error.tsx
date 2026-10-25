@@ -49,7 +49,7 @@ export function ReportErrorButton({ variant = "button", context }: { variant?: "
         onClick={open}
         className={cn(
           variant === "link"
-            ? "text-ink-2 hover:text-ink"
+            ? "inline-block py-1 text-ink-2 hover:text-ink pointer-coarse:py-2"
             : "inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-2 text-sm font-medium text-ink-2 hover:text-ink",
         )}
       >

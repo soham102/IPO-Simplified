@@ -15,7 +15,7 @@ export function Disclosure({
 }) {
   return (
     <details className={cn("group", className)} open={defaultOpen}>
-      <summary className="flex cursor-pointer list-none items-center gap-1.5 text-sm font-medium text-series select-none [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center gap-1.5 py-1 text-sm font-medium text-series select-none pointer-coarse:py-2 [&::-webkit-details-marker]:hidden">
         <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden />
         {summary}
       </summary>

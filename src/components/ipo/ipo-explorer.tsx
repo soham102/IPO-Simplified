@@ -96,7 +96,7 @@ export function IpoExplorer({
   return (
     <div>
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div role="group" aria-label="Filter by status" className="flex gap-1 overflow-x-auto rounded-xl border border-line bg-surface p-1 [scrollbar-width:none]">
+        <div role="group" aria-label="Filter by status" className="flex flex-wrap gap-1 rounded-xl border border-line bg-surface p-1 lg:flex-nowrap">
           {STATUS_TABS.map((t) => (
             <button
               key={t.id}
@@ -107,7 +107,7 @@ export function IpoExplorer({
                 syncUrl({ status: t.id });
               }}
               className={cn(
-                "shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors",
+                "shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors pointer-coarse:py-2.5",
                 status === t.id ? "bg-brand text-on-brand" : "text-ink-2 hover:bg-sunken hover:text-ink",
               )}
             >

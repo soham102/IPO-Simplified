@@ -40,7 +40,7 @@ export function DetailLevelToggle() {
           aria-checked={level === l}
           onClick={() => setLevel(l)}
           className={cn(
-            "rounded-full px-3 py-1 font-medium capitalize transition-colors",
+            "rounded-full px-3 py-1 font-medium capitalize transition-colors pointer-coarse:py-2",
             level === l ? "bg-brand text-on-brand" : "text-ink-2 hover:text-ink",
           )}
         >
