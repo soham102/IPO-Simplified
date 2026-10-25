@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/*
+ * IPO Simplified design tokens.
+ * Warm off-white paper, navy ink, restrained status colours:
+ * green = positive evidence, amber = caution, red = material risk.
+ */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-display), ui-serif, Georgia, serif;
+
+  --color-paper: #faf8f4;
+  --color-surface: #ffffff;
+  --color-sunken: #f3f0ea;
+  --color-line: #e5e0d6;
+  --color-line-strong: #cfc8ba;
+
+  --color-ink: #0f1f3a;
+  --color-ink-2: #3c4a63;
+  --color-ink-3: #5d6a80;
+
+  --color-brand: #1d3a6b;
+  --color-brand-soft: #e8edf7;
+  --color-series: #2f5fc4;
+  --color-context: #9aa3b5;
+
+  --color-good: #1c6b45;
+  --color-good-soft: #e6f2ea;
+  --color-warn: #8a5300;
+  --color-warn-soft: #fbf0dc;
+  --color-risk: #a8261b;
+  --color-risk-soft: #fbe9e7;
+  --color-sample: #6b4fa0;
+  --color-sample-soft: #f1ecf8;
+
+  /* Text on solid brand backgrounds, and the always-dark credit bar. */
+  --color-on-brand: #ffffff;
+  --color-bar: #0f1f3a;
+  --color-negative: #a8261b;
+  --color-grid: #ebe6dd;
+}
+
+/*
+ * Dark theme. Applied when the user picks "Dark", or picks "System" (the
+ * default) and the OS prefers dark. Same token names, so every utility
+ * class switches automatically.
+ */
+@layer base {
+  :root[data-theme="dark"] {
+    --color-paper: #0b1220;
+    --color-surface: #111a2e;
+    --color-sunken: #16213a;
+    --color-line: #26324c;
+    --color-line-strong: #3a4766;
+
+    --color-ink: #e7ecf5;
+    --color-ink-2: #b9c3d6;
+    --color-ink-3: #8d99b0;
+
+    --color-brand: #8fb0ff;
+    --color-brand-soft: #1c2b4d;
+    --color-series: #5b84df;
+    --color-context: #6b7690;
+
+    --color-good: #5cc28b;
+    --color-good-soft: #10291c;
+    --color-warn: #efb556;
+    --color-warn-soft: #2e2311;
+    --color-risk: #f08a7e;
+    --color-risk-soft: #351816;
+    --color-sample: #bba4f0;
+    --color-sample-soft: #231b38;
+
+    --color-on-brand: #0b1220;
+    --color-bar: #060a14;
+    --color-negative: #e2685c;
+    --color-grid: #24304a;
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum" 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-series);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-brand-soft);
+  }
+}
+
+@layer components {
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+  .prose-body p + p {
+    margin-top: 0.75rem;
+  }
+  .prose-body ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .prose-body li + li {
+    margin-top: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
