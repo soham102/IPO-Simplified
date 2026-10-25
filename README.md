@@ -1,170 +1,57 @@
-# IPO Simplified
+# IPO Simplified 📈
 
-Plain-English research and education for Indian IPOs. A beginner can open an IPO, understand the business, inspect financial trends, compare valuation with peers, read the material risks and see exactly which source every figure comes from.
+**Link:** https://iposimplified.vercel.app/
 
-> **Educational information only. Not investment advice.** The product does not recommend applying for or avoiding any IPO, or treat GMP or subscription figures as a signal of quality. GMP is shown on IPO cards for reference only, labelled unofficial and timestamped.
+IPO Simplified is a beginner-friendly IPO research and learning platform designed to help first-time investors understand an Initial Public Offering (IPO) before making an investment decision. It aims to simplify complex financial information, company fundamentals, valuation metrics, and risk disclosures into clear, easy-to-understand insights.
 
-By default the app shows **real IPOs** (`DATA_PROVIDER=curated`): eight mainboard issues from October 2026, compiled on 25 Oct 2026 from public sources (Chittorgarh.com IPO pages, plus the peer tables reproduced from each RHP), with every figure cited and each IPO linked to its RHP. All values are tagged **Unverified** until checked against the RHP itself. Data lives in `src/data/live/ipos.ts` and is a snapshot, so update it as IPOs progress.
+The platform bridges the gap between publicly available IPO information and practical financial understanding, helping users explore the business behind an IPO, evaluate its financial performance, understand its valuation, and identify potential risks before investing their hard-earned money.
 
-`DATA_PROVIDER=mock` switches to a **sample dataset**: eight clearly-labelled **fictional** companies that exercise every state of the UI.
+## ✨ Features
 
-## Tech stack
+- 📚 **Beginner-Friendly IPO Analysis:** Understand what a company does, how it makes money, and what drives its business.
+- 📊 **Financial Performance Insights:** Explore revenue, profitability, debt, and cash flow through simplified explanations and visualizations.
+- 💰 **Valuation Analysis:** Understand IPO pricing, P/E ratios, and comparisons with relevant listed companies.
+- ⚖️ **Bull Case vs. Bear Case:** Explore the potential opportunities and concerns surrounding an IPO through balanced analysis.
+- 🚩 **Risk Identification:** Understand important business, financial, and regulatory risks disclosed in official offer documents.
+- 🔍 **IPO Discovery:** Explore IPO details, issue timelines, price bands, and other available information in one place.
+- 🧠 **Financial Concepts Simplified:** Learn terms such as GMP, EPS, market capitalization, fresh issue, and offer for sale in plain English.
+- 📖 **Source-Backed Insights:** Connect analysis to available official disclosures and financial information to understand the evidence behind each finding.
 
-| Area | Choice |
-| --- | --- |
-| Framework | Next.js 16 (App Router, Turbopack), React 19, TypeScript 6 |
-| Styling | Tailwind CSS v4, design tokens in `src/app/globals.css`; small hand-written shadcn-style primitives in `src/components/ui` |
-| Charts | Recharts 3 |
-| Icons | lucide-react |
-| Validation | zod 4 |
-| Data | Pluggable provider: built-in sample dataset (default) or Supabase |
-| AI (optional) | Anthropic Claude via `@anthropic-ai/sdk`, server-side only |
-| Tests | Vitest |
-| Hosting | Vercel (no special configuration needed) |
+## 🎯 Why IPO Simplified?
 
-## Getting started
+For many first-time investors, evaluating an IPO can feel overwhelming.
 
-Requirements: Node.js 20.9 or newer (developed on Node 24).
+They encounter information such as Grey Market Premium (GMP), subscription multiples, price bands, financial statements, and listing-gain predictions — but understanding what these numbers actually mean can be difficult.
 
-```bash
-npm install
-cp .env.example .env.local   # optional: every variable is optional
-npm run dev                  # http://localhost:3000
-```
+Questions like *Is this company financially healthy? Is the IPO valuation reasonable? What are the major risks? How does the company make money?* often remain unanswered.
 
-Other scripts:
+IPO Simplified aims to make IPO research more accessible by translating complex financial information into simple explanations, highlighting both potential opportunities and risks, and helping beginners understand what they are investing in.
 
-```bash
-npm test            # unit tests (Vitest)
-npm run typecheck   # TypeScript, no emit
-npm run build       # production build
-npm start           # serve the production build
-```
+Rather than encouraging decisions based solely on market hype, the platform focuses on helping users understand the underlying business, evaluate the available evidence, and recognize the uncertainties involved.
 
-## Environment variables
+Whether you're a student, a first-time earner, or someone exploring the stock market for the first time, IPO Simplified aims to provide a more approachable starting point for understanding IPOs.
 
-All optional. With none set, the app runs in sample mode with rule-based (non-AI) explanations.
+**The goal is simple: understand the business, evaluate the risks, and make more informed investment decisions.**
 
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `DATA_PROVIDER` | `curated` | `curated` = real IPOs compiled from public sources; `mock` = fictional sample data; `supabase` = records from Supabase |
-| `SUPABASE_URL` | none | Supabase project URL (server-side only) |
-| `SUPABASE_SERVICE_ROLE_KEY` | none | Service-role key (server-side only; never prefix with `NEXT_PUBLIC_`) |
-| `ANTHROPIC_API_KEY` | none | Enables AI explanations. When unset, the "Explain it to me" panel uses rule-based explanations |
-| `ANTHROPIC_MODEL` | `claude-opus-5-5` | Claude model for explanations |
+## 🛠️ Technology
 
-If `DATA_PROVIDER=supabase` is set without credentials, or Supabase returns invalid records, pages show an error. **The app never silently falls back to sample data.**
+IPO Simplified is being developed as a web-based financial learning and research application.
 
-## Routes
+The planned technology stack includes:
 
-| Route | What it is |
-| --- | --- |
-| `/` | Landing: search, open/upcoming and recently listed IPOs, sample analysis, how it works, lessons, disclaimer |
-| `/ipos` | Discovery dashboard: status filter (All/Open/Upcoming/Closed/Listed), search, board filter, "full analysis only", sorting; `?status=` and `?q=` are linkable |
-| `/ipos/[slug]` | Analysis page with tabs: Overview (two-minute summary, analysis framework, explainer), Business, Financials, Valuation, Bull vs bear, Risks, IPO structure, Since listing (listed IPOs only), Sources. `?tab=` is linkable |
-| `/ipos/[slug]/performance` | Post-listing performance: issue vs listing price, listing-day change, latest close with date, price chart with date-range selector |
-| `/learn`, `/learn/[slug]` | Seven beginner lessons |
-| `/glossary` | 19 terms with short and deeper explanations (also shown as inline tooltips across the app) |
-| `/methodology` | Label rules, generated from the same code that applies them |
-| `/watchlist` | Browser-local watchlist (no account) |
-| `/disclosures` | Legal disclaimer, data modes, sources, AI, sponsorship/affiliate disclosure, corrections |
-| `/sources/[slug]/[sourceId]` | Source detail: metadata, cited sections, link to the original document |
-| `POST /api/explain` | `{ slug, topic }` → explanation (AI or rule-based) |
-| `POST /api/report-error` | Correction reports (stored in Supabase if configured, otherwise logged) |
-| `GET /api/ipos` | JSON list of IPO summaries with provenance |
+- **Next.js / React** — application interface and user experience
+- **TypeScript** — type-safe application development
+- **Tailwind CSS** — responsive UI and styling
+- **Supabase** — database and backend services
+- **Recharts** — financial data visualization
+- **Vercel** — deployment and hosting
 
-## Architecture
+*The final implementation depends on the current codebase and completed integrations.*
 
-```
-src/
-  app/                    routes (server components by default)
-  components/
-    ui/                   primitives: Badge, Tabs, Term (glossary tooltip), Disclosure, Value, SourceRef…
-    layout/               header, footer, sample banner, report-an-error dialog
-    ipo/                  IPO card, explorer (search/filter/sort), watchlist
-    detail/               one component per analysis section
-    charts/               Recharts wrappers (bar, peer P/E, price line)
-  data/
-    sample/               fictional sample dataset + builders
-    glossary.ts, lessons.ts
-  lib/
-    types.ts              domain model
-    schema.ts             zod validation of external records
-    finance.ts            pure financial maths (null-safe)
-    metrics.ts            per-year metrics, valuation snapshot
-    analysis.ts           explainable label rules + METHODOLOGY
-    data/                 provider interface, mock + Supabase adapters
-    ai/                   fact pack, deterministic explainer, Claude adapter
-supabase/migrations/      SQL schema
-```
+## 🚀 Vision
 
-### Data model and source integrity
+To make IPO research easier to understand and more accessible to everyday investors — helping people build financial literacy, look beyond market hype, and develop a stronger understanding of businesses before investing.
 
-Every factual figure is a `SourcedValue`:
+**Explore IPO Simplified:** [Add your platform link here]
 
-```ts
-{ value, unit, period, citation: { sourceId, locator }, status, updatedAt }
-```
-
-`status` is `verified | unverified | sample | unavailable`. Claims (business description, bull/bear points) must either cite a source or be explicitly flagged as a hypothesis. `src/lib/schema.ts` enforces this for live data. It rejects records with uncited values, citations to unknown sources, non-null values marked unavailable, uncited claims that aren't hypotheses, and live records containing sample values.
-
-### Adding a real data provider
-
-1. Implement `IpoDataProvider` (`src/lib/data/provider.ts`): `listIpos()` and `getIpo(slug)` returning `Ipo` objects.
-2. Validate with `ipoSchema` before returning.
-3. Register it in `getProvider()` (`src/lib/data/index.ts`).
-
-No page or component changes are needed. Throw `DataProviderError` on failure; never return estimated values.
-
-For the included Supabase adapter, run `supabase/migrations/0001_init.sql`, insert reviewed `Ipo` documents into `ipos.payload` with `published = true`, and set `DATA_PROVIDER=supabase`. Row-level security is enabled with no public policies; only the server (service role) can read or write.
-
-### Analysis framework
-
-Six areas (business quality, financial health, valuation, growth, material risks, IPO structure) each get one of **Positive evidence / Mixed evidence / Needs attention / Insufficient data**, by fixed rules in `src/lib/analysis.ts`. The `/methodology` page renders those same rule definitions. There is deliberately no aggregate score. GMP and subscription data are not inputs.
-
-### AI layer (optional)
-
-`src/lib/ai/claude.ts` sends Claude a numbered **fact pack** built only from cited data, with structured output (summary / facts / interpretations / unknowns, each citing fact IDs). Server-side checks then:
-
-- map fact IDs back to source citations, dropping any item that cites a non-existent fact;
-- reject output containing investment verdicts ("you should apply", "guaranteed returns"…), falling back to the rule-based explanation;
-- handle refusals, rate limits and API errors by falling back as well.
-
-Responses are cached per IPO and topic for six hours, and the endpoint is rate-limited. The request opts into Anthropic's server-side refusal fallback (`fallbacks: "default"`); remove it in `claude.ts` if you don't want it. AI never changes figures or labels.
-
-## Testing
-
-```bash
-npm test
-```
-
-90 unit tests cover:
-
-- **Financial maths** (`finance.test.ts`): growth, margins, CAGR, P/E, market cap, debt-to-equity, medians; zero denominators, negative bases, negative earnings, missing and non-finite inputs.
-- **Analysis and data integrity** (`analysis.test.ts`): sample records pass schema validation, the schema rejects bad records, status derivation, partial-period handling, label rules per scenario.
-- **AI guardrails** (`ai/explain-core.test.ts`): fact-pack construction, deterministic explanations, rejection of fabricated citations and verdict language.
-
-A browser smoke test (Playwright, run against the production build at desktop and 390px mobile widths) covered navigation, filters, empty states, tab keyboard navigation, detailed mode, glossary tooltips, the explainer, the watchlist, the error-report flow and horizontal overflow.
-
-## Deployment (Vercel)
-
-1. Push the repository and import it in Vercel (framework preset: Next.js; root directory: this folder).
-2. Optionally add environment variables (see above).
-3. Deploy. Pages revalidate hourly, so date-based statuses stay current.
-
-Notes for production:
-
-- The in-memory rate limiter is per instance; use a shared store (e.g. Upstash Redis) for strict limits.
-- Without Supabase, correction reports are only written to server logs.
-
-## Known limitations and what's still sample
-
-- **All IPO data is fictional sample data.** No real IPO listings, dates, financials, peers, risk factors or prices are included.
-- **Post-listing prices are a generated sample series.** Live prices need a licensed market-data provider.
-- **No live provider is integrated.** NSE/BSE/SEBI websites are not scraped. Their terms restrict automated access, and NSE/BSE market data is licensed. Before integrating any provider, confirm API availability, licensing terms, redistribution rights, rate limits and cost.
-- **Valuation uses P/E only.** EV/EBITDA and price-to-book need additional peer data.
-- **Thresholds are editorial judgements.** The label thresholds are simple and documented, not statistically validated.
-
-## Legal
-
-This is an educational tool and is not registered with SEBI as an investment adviser or research analyst. Describing a service as "educational" does not by itself settle its regulatory status under SEBI (Investment Advisers) and (Research Analysts) Regulations. **Get specialist legal review before launching any recommendation, rating, paid research, or sponsored/affiliate feature.** The UI must not imply SEBI registration or endorsement.
+*IPO Simplified is intended for educational and informational purposes. Its analysis does not guarantee investment outcomes or returns. Users should independently verify information, review official offer documents, and understand the risks involved before making investment decisions.*
