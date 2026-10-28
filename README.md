@@ -52,6 +52,6 @@ The planned technology stack includes:
 
 To make IPO research easier to understand and more accessible to everyday investors — helping people build financial literacy, look beyond market hype, and develop a stronger understanding of businesses before investing.
 
-**Explore IPO Simplified:** [Add your platform link here]
+**Explore IPO Simplified:** https://iposimplified.vercel.app/
 
 *IPO Simplified is intended for educational and informational purposes. Its analysis does not guarantee investment outcomes or returns. Users should independently verify information, review official offer documents, and understand the risks involved before making investment decisions.*
